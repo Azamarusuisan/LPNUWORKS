@@ -441,9 +441,70 @@ footer {
     background: #e27491;
   }
 }
+
+/* =====================
+   Loading Screen
+===================== */
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #1a3c6e;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease;
+}
+.loader.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.loader_logo {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 30px;
+}
+@media (min-width: 769px) {
+  .loader_logo {
+    font-size: 28px;
+  }
+}
+.loader_bar_wrap {
+  width: 200px;
+  height: 3px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+@media (min-width: 769px) {
+  .loader_bar_wrap {
+    width: 280px;
+  }
+}
+.loader_bar {
+  height: 100%;
+  width: 0%;
+  background: #fff;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
 </style>
 </head>
 <body>
+
+<!-- ===== Loading Screen ===== -->
+<div class="loader" id="loader">
+  <div class="loader_logo">NUWORKS</div>
+  <div class="loader_bar_wrap">
+    <div class="loader_bar" id="loaderBar"></div>
+  </div>
+</div>
 
 <!-- ===== Header ===== -->
 <header>
@@ -565,5 +626,46 @@ footer {
   <a href="#contact" class="f_contact">お問い合わせ</a>
 </div>
 
+<script>
+(function() {
+  var loader = document.getElementById('loader');
+  var bar = document.getElementById('loaderBar');
+  var minTime = 2500;
+  var start = Date.now();
+  var progress = 0;
+  var loaded = false;
+
+  // Animate progress bar smoothly
+  var interval = setInterval(function() {
+    if (!loaded) {
+      progress += (90 - progress) * 0.08;
+    } else {
+      progress = 100;
+    }
+    bar.style.width = progress + '%';
+    if (progress >= 99.5) {
+      clearInterval(interval);
+      bar.style.width = '100%';
+    }
+  }, 50);
+
+  function hideLoader() {
+    loaded = true;
+    var elapsed = Date.now() - start;
+    var remaining = Math.max(0, minTime - elapsed);
+    setTimeout(function() {
+      bar.style.width = '100%';
+      setTimeout(function() {
+        loader.classList.add('is-hidden');
+        setTimeout(function() { loader.style.display = 'none'; }, 600);
+      }, 300);
+    }, remaining);
+  }
+
+  window.addEventListener('load', hideLoader);
+  // Fallback: hide after 6s max
+  setTimeout(hideLoader, 6000);
+})();
+</script>
 </body>
 </html>
