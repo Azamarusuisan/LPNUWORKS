@@ -443,6 +443,335 @@ footer {
 }
 
 /* =====================
+   Strengths Section
+===================== */
+.strengths {
+  background: #e8ecf1;
+  padding: 60px 0;
+}
+@media (max-width: 768px) {
+  .strengths {
+    padding: 8% 4%;
+  }
+}
+.strengths_cards {
+  display: flex;
+  gap: 24px;
+  width: 1000px;
+  max-width: 90%;
+  margin: auto;
+}
+@media (max-width: 768px) {
+  .strengths_cards {
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    gap: 16px;
+  }
+}
+.s_card {
+  flex: 1;
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 768px) {
+  .s_card {
+    padding: 24px 20px;
+  }
+}
+.s_num {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a3c6e;
+  margin-bottom: 16px;
+  line-height: 1;
+}
+@media (max-width: 768px) {
+  .s_num {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+}
+.s_heading {
+  font-size: 24px;
+  font-weight: 900;
+  color: #1a3c6e;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+@media (max-width: 768px) {
+  .s_heading {
+    font-size: 20px;
+  }
+}
+.s_sub {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+@media (max-width: 768px) {
+  .s_sub {
+    font-size: 13px;
+  }
+}
+/* Card 1: Phone mockup */
+.s_phone {
+  width: 140px;
+  margin: auto auto 0;
+  background: #f5f5f5;
+  border-radius: 18px;
+  border: 3px solid #333;
+  padding: 8px 6px;
+  position: relative;
+}
+@media (max-width: 768px) {
+  .s_phone {
+    width: 120px;
+  }
+}
+.s_phone_notch {
+  width: 50%;
+  height: 6px;
+  background: #333;
+  border-radius: 3px;
+  margin: 0 auto 6px;
+}
+.s_phone_screen {
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px 8px;
+  font-size: 9px;
+  color: #333;
+  line-height: 1.4;
+}
+.s_phone_search {
+  display: flex;
+  align-items: center;
+  background: #f0f0f0;
+  border-radius: 4px;
+  padding: 4px 6px;
+  margin-bottom: 6px;
+  font-size: 8px;
+  color: #666;
+}
+.s_phone_search::after {
+  content: "";
+  margin-left: auto;
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid #666;
+  border-radius: 50%;
+}
+.s_phone_img {
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(135deg, #a8d8ea 0%, #6cb4ee 100%);
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+.s_phone_btns {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+.s_phone_btn {
+  flex: 1;
+  background: #1a73e8;
+  color: #fff;
+  text-align: center;
+  padding: 3px 0;
+  border-radius: 3px;
+  font-size: 7px;
+  font-weight: 700;
+}
+.s_phone_btn--outline {
+  background: #fff;
+  color: #333;
+  border: 1px solid #ccc;
+}
+.s_phone_cta {
+  background: #1a73e8;
+  color: #fff;
+  text-align: center;
+  padding: 4px 0;
+  border-radius: 4px;
+  font-size: 8px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+/* Card 2: Map illustration */
+.s_map {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: auto auto 0;
+}
+@media (max-width: 768px) {
+  .s_map {
+    width: 150px;
+    height: 150px;
+  }
+}
+.s_map_bg {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #d0e8f5 0%, #b8daf0 100%);
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+.s_map_bg::before,
+.s_map_bg::after {
+  content: "";
+  position: absolute;
+  background: rgba(255,255,255,0.3);
+}
+.s_map_bg::before {
+  width: 2px;
+  height: 100%;
+  left: 35%;
+  transform: rotate(15deg);
+}
+.s_map_bg::after {
+  width: 100%;
+  height: 2px;
+  top: 45%;
+  transform: rotate(-10deg);
+}
+.s_map_ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  height: 70%;
+  border: 2px solid rgba(26,115,232,0.4);
+  border-radius: 50%;
+}
+.s_map_ring2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 90%;
+  border: 1.5px solid rgba(26,115,232,0.2);
+  border-radius: 50%;
+}
+.s_map_pin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+  width: 30px;
+  height: 38px;
+  background: #1a73e8;
+  border-radius: 50% 50% 50% 0;
+  transform: translate(-50%, -70%) rotate(-45deg);
+}
+.s_map_pin::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-radius: 50%;
+}
+.s_map_label {
+  position: absolute;
+  bottom: 15%;
+  right: 10%;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a3c6e;
+}
+
+/* Card 3: Pricing */
+.s_pricing {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 16px;
+  margin-top: auto;
+}
+@media (max-width: 768px) {
+  .s_pricing {
+    gap: 12px;
+  }
+}
+.s_price_col {
+  text-align: center;
+}
+.s_price_amount {
+  font-size: 14px;
+  font-weight: 700;
+  color: #888;
+  margin-bottom: 6px;
+}
+.s_price_amount--highlight {
+  color: #1a73e8;
+  font-size: 16px;
+}
+.s_price_icon {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 6px;
+  position: relative;
+}
+.s_coin {
+  width: 28px;
+  height: 28px;
+  background: #bbb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 900;
+  color: #fff;
+  margin: 0 auto;
+}
+.s_coin--blue {
+  background: #1a73e8;
+  width: 34px;
+  height: 34px;
+  font-size: 16px;
+}
+.s_coin_stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.s_coin_mini {
+  width: 28px;
+  height: 6px;
+  background: #ccc;
+  border-radius: 3px;
+}
+.s_coin_mini--blue {
+  width: 34px;
+  background: #1a73e8;
+}
+.s_price_name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #444;
+  margin-top: 4px;
+}
+.s_price_name--highlight {
+  color: #1a73e8;
+}
+
+/* =====================
    Loading Screen
 ===================== */
 .loader {
@@ -522,7 +851,79 @@ footer {
   <div class="section-img"><img src="assets/img/section-1-desktop.webp" alt="メインビジュアル - ベンチマークターゲティング広告"></div>
   <div class="section-img"><img src="assets/img/section-2-desktop-2.webp" alt="こんなお悩みありませんか？"></div>
   <div class="section-img"><img src="assets/img/section-3-desktop.webp" alt="ベンチマークターゲティング広告の仕組み"></div>
-  <div class="section-img"><img src="assets/img/section-4-desktop-5.webp" alt="3つの強み"></div>
+  <!-- ===== 3つの強み (HTML) ===== -->
+  <section class="strengths">
+    <div class="strengths_cards">
+      <!-- Card 01 -->
+      <div class="s_card">
+        <div class="s_num">01</div>
+        <h3 class="s_heading">競合他院の<br>サイト訪問者を特定</h3>
+        <p class="s_sub">他院のサイトを訪れたユーザーを<br>ターゲットに設定</p>
+        <div class="s_phone">
+          <div class="s_phone_notch"></div>
+          <div class="s_phone_screen">
+            <div class="s_phone_search">クリニック名で検索</div>
+            <div class="s_phone_img"></div>
+            <div class="s_phone_btns">
+              <div class="s_phone_btn">今日</div>
+              <div class="s_phone_btn">明日</div>
+            </div>
+            <div class="s_phone_cta">ネット予約</div>
+            <div class="s_phone_btns">
+              <div class="s_phone_btn--outline s_phone_btn">オンライン</div>
+              <div class="s_phone_btn--outline s_phone_btn">詳細</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card 02 -->
+      <div class="s_card">
+        <div class="s_num">02</div>
+        <h3 class="s_heading">配信エリアを<br>1km単位で<br>細かく設定</h3>
+        <p class="s_sub">都道府県や市区町村での指定も可能</p>
+        <div class="s_map">
+          <div class="s_map_bg"></div>
+          <div class="s_map_ring2"></div>
+          <div class="s_map_ring"></div>
+          <div class="s_map_pin"></div>
+          <div class="s_map_label">1km</div>
+        </div>
+      </div>
+      <!-- Card 03 -->
+      <div class="s_card">
+        <div class="s_num">03</div>
+        <h3 class="s_heading">月額固定料金で安心。</h3>
+        <p class="s_sub">低コストから開始可能。</p>
+        <div class="s_pricing">
+          <div class="s_price_col">
+            <div class="s_price_amount">30万〜</div>
+            <div class="s_coin_stack">
+              <div class="s_coin_mini"></div>
+              <div class="s_coin_mini"></div>
+              <div class="s_coin">¥</div>
+            </div>
+            <div class="s_price_name">A社</div>
+          </div>
+          <div class="s_price_col">
+            <div class="s_price_amount">20万〜</div>
+            <div class="s_coin_stack">
+              <div class="s_coin_mini"></div>
+              <div class="s_coin">¥</div>
+            </div>
+            <div class="s_price_name">B社</div>
+          </div>
+          <div class="s_price_col">
+            <div class="s_price_amount s_price_amount--highlight">40,000円〜</div>
+            <div class="s_coin_stack">
+              <div class="s_coin_mini--blue s_coin_mini"></div>
+              <div class="s_coin s_coin--blue">¥</div>
+            </div>
+            <div class="s_price_name s_price_name--highlight">弊社</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <div class="section-img"><img src="assets/img/section-5-desktop-2.webp" alt="配信先は200万サイト以上"></div>
   <div class="section-img"><img src="assets/img/section-6-desktop-3.webp" alt="詳細レポート - URL別"></div>
   <div class="section-img"><img src="assets/img/section-7-desktop-2.webp" alt="詳細レポート - 性別・年齢別"></div>
