@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WEB広告手法の新提案【ベンチマークターゲティング広告】| NUWORKS株式会社</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<meta name="format-detection" content="telephone=no">
+<style>
+/* Reset */
+*, ::after, ::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  max-width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+body {
+  max-width: 100%;
+  width: 100%;
+  margin: 0 auto;
+  background: #fff;
+  color: #000;
+  font-family: "Noto Sans JP", sans-serif;
+}
+img {
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+ul, li {
+  display: block;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+input[type=text], input[type=email], textarea {
+  border: 1px solid #babbbb;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0.6em;
+  font-family: inherit;
+}
+input[type=text]:invalid:focus, input[type=email]:invalid:focus, textarea:invalid:focus {
+  border-color: red;
+}
+textarea {
+  line-height: 1.5;
+  resize: vertical;
+}
+
+/* Utility */
+@media (max-width: 768px) {
+  .only_pc { display: none !important; }
+}
+@media (min-width: 769px) {
+  .only_sp { display: none !important; }
+}
+
+/* Section Inner */
+.section_inner {
+  width: 100%;
+  margin: auto;
+}
+@media (min-width: 769px) {
+  .section_inner {
+    width: 1000px;
+    max-width: 90%;
+  }
+}
+
+/* =====================
+   Header
+===================== */
+header {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  height: 50px;
+  z-index: 100;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+@media (min-width: 769px) {
+  header {
+    height: 65px;
+  }
+}
+.header_inner {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 10px;
+}
+@media (min-width: 769px) {
+  .header_inner {
+    width: 1000px;
+    max-width: 90%;
+    margin: auto;
+    padding: 0;
+  }
+}
+.header_logo {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a3c6e;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+@media (min-width: 769px) {
+  .header_logo {
+    font-size: 18px;
+  }
+}
+.header_badge {
+  height: 30px;
+  width: auto;
+  margin-left: 10px;
+}
+@media (min-width: 769px) {
+  .header_badge {
+    height: 40px;
+    margin-left: 15px;
+  }
+}
+.header_cta {
+  margin-left: auto;
+  display: flex;
+  gap: 6px;
+}
+.header_cta a {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+.header_cta a:hover {
+  opacity: 0.8;
+}
+@media (min-width: 769px) {
+  .header_cta a {
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+}
+.btn_document {
+  background: #1a73e8;
+  color: #fff;
+}
+.btn_contact {
+  background: #e27491;
+  color: #fff;
+}
+
+/* =====================
+   Sections (Image-based)
+===================== */
+.section-img {
+  display: block;
+  line-height: 0;
+}
+.section-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =====================
+   Q&A
+===================== */
+.qa {
+  background: #e4e4e4;
+  padding: 6% 0 8%;
+}
+.qa .section_inner {
+  width: 85%;
+  margin: auto;
+}
+@media (min-width: 769px) {
+  .qa .section_inner {
+    width: 1000px;
+    max-width: 90%;
+  }
+}
+.qa_title {
+  text-align: center;
+  font-size: 6vw;
+  font-weight: 900;
+  color: #1a3c6e;
+  margin-bottom: 5%;
+}
+@media (min-width: 769px) {
+  .qa_title {
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+}
+.qa_wrap {
+  counter-reset: number 0;
+}
+.qa_item {
+  margin-top: 4%;
+}
+@media (min-width: 769px) {
+  .qa_item {
+    margin-top: 20px;
+  }
+}
+.qa_q {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(to right, #1a73e8 0%, #4a9af5 100%);
+  border-top-right-radius: 0.8em;
+  border-top-left-radius: 0.8em;
+  padding: 0.6em 0;
+  font-size: 3.8vw;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+}
+@media (min-width: 769px) {
+  .qa_q {
+    font-size: 20px;
+  }
+}
+.qa_q::before {
+  font-size: 14px;
+  font-weight: bold;
+  counter-increment: number 1;
+  content: "Q" counter(number);
+  width: 3em;
+  text-align: center;
+  display: inline-block;
+  flex-shrink: 0;
+}
+@media (min-width: 769px) {
+  .qa_q::before {
+    font-size: 20px;
+  }
+}
+.qa_q::after {
+  content: "";
+  display: block;
+  width: 0.9em;
+  height: 0.9em;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(45deg);
+  margin: auto 12px auto auto;
+  transition: transform 0.3s;
+  flex-shrink: 0;
+}
+.qa_q.is-open::after {
+  transform: rotate(-135deg);
+}
+.qa_a {
+  border-bottom-right-radius: 0.8em;
+  border-bottom-left-radius: 0.8em;
+  background-color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+@media (min-width: 769px) {
+  .qa_a {
+    font-size: 18px;
+  }
+}
+.qa_a p {
+  padding: 1em 1.2em;
+  text-align: justify;
+  line-height: 1.8;
+}
+.qa_a a {
+  color: #1a73e8;
+  text-decoration: underline;
+}
+
+/* =====================
+   Contact Form
+===================== */
+.contact {
+  background: #e4e4e4;
+  padding: 50px 0 60px;
+}
+.contact_title {
+  text-align: center;
+  color: #231815;
+  margin-bottom: 30px;
+  font-size: 6vw;
+  font-weight: 900;
+  line-height: 1.4;
+}
+@media (min-width: 769px) {
+  .contact_title {
+    font-size: 26px;
+    margin-bottom: 40px;
+  }
+}
+.form_block {
+  width: 86%;
+  margin: auto;
+  max-width: 600px;
+}
+.form_block dt {
+  margin-bottom: 5px;
+  line-height: 1;
+}
+.form_block .ttl {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 15px;
+}
+.form_block .required {
+  display: inline-block;
+  background: #eb6870;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 12px;
+  padding: 0.3em 0.5em;
+  margin-left: 8px;
+}
+.form_block .add {
+  display: inline-block;
+  font-size: 12px;
+  margin-left: 8px;
+  color: #666;
+}
+.form_block dd {
+  margin-bottom: 1.2em;
+}
+.submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2em auto;
+  font-size: 16px;
+  font-weight: 700;
+  min-height: 3em;
+  min-width: 11em;
+  max-width: 324px;
+  padding: 0.6em 2em;
+  border-radius: 8px;
+  background: linear-gradient(to right, #1a73e8 0%, #4a9af5 100%);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  font-family: inherit;
+}
+.submit:hover {
+  opacity: 0.85;
+}
+
+/* =====================
+   Footer
+===================== */
+footer {
+  background: #1a3c6e;
+  color: #fff;
+  text-align: center;
+  padding: 30px 0 20px;
+}
+.footer_ttl {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+@media (min-width: 769px) {
+  .footer_ttl {
+    font-size: 16px;
+  }
+}
+.footer_body {
+  font-size: 13px;
+}
+.footer_item {
+  margin: 0.5em 0;
+}
+.footer_item a {
+  color: #fff;
+  text-decoration: underline;
+}
+.footer_item a:hover {
+  opacity: 0.8;
+}
+.footer_copy {
+  margin-top: 15px;
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+/* =====================
+   Float CTA (SP: top fixed)
+===================== */
+.float_cta {
+  display: none;
+}
+@media (max-width: 768px) {
+  .float_cta {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    gap: 0;
+  }
+  .float_cta a {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 0;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+  }
+  .float_cta .f_document {
+    background: #1a73e8;
+  }
+  .float_cta .f_contact {
+    background: #e27491;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<header>
+  <div class="header_inner">
+    <span class="header_logo">NUWORKS株式会社</span>
+    <div class="header_cta">
+      <a href="#contact" class="btn_document">資料請求</a>
+      <a href="#contact" class="btn_contact">お問い合わせ</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Main: Image Sections ===== -->
+<main>
+  <div class="section-img"><img src="assets/img/section-1-desktop.png" alt="メインビジュアル - ベンチマークターゲティング広告"></div>
+  <div class="section-img"><img src="assets/img/section-2-desktop-2.png" alt="こんなお悩みありませんか？"></div>
+  <div class="section-img"><img src="assets/img/section-3-desktop.png" alt="ベンチマークターゲティング広告の仕組み"></div>
+  <div class="section-img"><img src="assets/img/section-4-desktop-5.png" alt="3つの強み"></div>
+  <div class="section-img"><img src="assets/img/section-5-desktop-2.png" alt="配信先は200万サイト以上"></div>
+  <div class="section-img"><img src="assets/img/section-6-desktop-3.png" alt="詳細レポート - URL別"></div>
+  <div class="section-img"><img src="assets/img/section-7-desktop-2.png" alt="詳細レポート - 性別・年齢別"></div>
+  <div class="section-img"><img src="assets/img/section-8-desktop.png" alt="月1回まで変更可能"></div>
+  <div class="section-img"><img src="assets/img/section-9-desktop.png" alt="導入実績・広告配信までの流れ"></div>
+  <div class="section-img"><img src="assets/img/section-10-desktop.png" alt="広告配信の流れ 続き"></div>
+
+  <!-- ===== Q&A ===== -->
+  <section id="qa" class="qa">
+    <div class="section_inner">
+      <h2 class="qa_title">よくある質問</h2>
+      <div class="qa_wrap">
+        <dl class="qa_item">
+          <dt class="qa_q" onclick="this.classList.toggle('is-open');const a=this.nextElementSibling;a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px'">
+            <p>強引な営業はありませんか？</p>
+          </dt>
+          <dd class="qa_a">
+            <p>弊社からのしつこい営業等は一切ございません。<br>お問い合わせから1営業日以内にご指定のご連絡先にご連絡するだけですので、ご安心ください。</p>
+          </dd>
+        </dl>
+        <dl class="qa_item">
+          <dt class="qa_q" onclick="this.classList.toggle('is-open');const a=this.nextElementSibling;a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px'">
+            <p>競合他院のサイトは何個まで指定できますか？</p>
+          </dt>
+          <dd class="qa_a">
+            <p>プランに応じて変わります。<br>5個～20個まで指定できます。詳しくは料金プランをご確認ください。</p>
+          </dd>
+        </dl>
+        <dl class="qa_item">
+          <dt class="qa_q" onclick="this.classList.toggle('is-open');const a=this.nextElementSibling;a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px'">
+            <p>指定するエリアは「市区町村」でも可能ですか？</p>
+          </dt>
+          <dd class="qa_a">
+            <p>可能です。<br>都道府県や１㎞単位でも指定可能です。</p>
+          </dd>
+        </dl>
+        <dl class="qa_item">
+          <dt class="qa_q" onclick="this.classList.toggle('is-open');const a=this.nextElementSibling;a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px'">
+            <p>指定した競合他院のURLは変えられますか？</p>
+          </dt>
+          <dd class="qa_a">
+            <p>月1回変更可能です。</p>
+          </dd>
+        </dl>
+        <dl class="qa_item">
+          <dt class="qa_q" onclick="this.classList.toggle('is-open');const a=this.nextElementSibling;a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px'">
+            <p>レポートはいつ見れますか？</p>
+          </dt>
+          <dd class="qa_a">
+            <p>毎日見ることが可能ですので、ご安心ください。</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact Form ===== -->
+  <section id="contact" class="contact">
+    <div class="section_inner">
+      <h2 class="contact_title">資料請求・お問い合わせ</h2>
+      <form method="post" action="mail.php">
+        <dl class="form_block">
+          <dt><span class="ttl">会社名・屋号</span><span class="required">必須</span><span class="add">※全角</span></dt>
+          <dd><input type="text" name="会社名・屋号" required></dd>
+
+          <dt><span class="ttl">担当者名</span><span class="required">必須</span><span class="add">※全角</span></dt>
+          <dd><input type="text" name="担当者名" required></dd>
+
+          <dt><span class="ttl">メールアドレス</span><span class="required">必須</span><span class="add">※半角英数</span></dt>
+          <dd><input type="email" name="Email" required></dd>
+
+          <dt><span class="ttl">電話番号</span><span class="required">必須</span><span class="add">※半角英数ハイフンのみ</span></dt>
+          <dd><input type="text" name="電話番号" required></dd>
+
+          <dt><span class="ttl">お問い合わせ内容</span><span class="required">必須</span></dt>
+          <dd><textarea name="お問い合わせ内容" cols="50" rows="5" required></textarea></dd>
+        </dl>
+        <div>
+          <button type="submit" class="submit"><span>送信する</span></button>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="section_inner">
+    <h2 class="footer_ttl">運営会社</h2>
+    <ul class="footer_body">
+      <li class="footer_item"><a href="index.html">NUWORKS株式会社</a></li>
+      <li class="footer_item"><a href="privacy.html" target="_blank">プライバシーポリシー</a></li>
+    </ul>
+    <p class="footer_copy">&copy; NUWORKS Inc. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<!-- ===== Float CTA (SP) ===== -->
+<div class="float_cta">
+  <a href="#contact" class="f_document">資料請求</a>
+  <a href="#contact" class="f_contact">お問い合わせ</a>
+</div>
+
+</body>
+</html>
